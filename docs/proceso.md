@@ -7,9 +7,7 @@ un modelo ágil simplificado que permite:
 •	Priorización continua
 •	Integración constante
 
-# Ciclo de Vida Iterativo
-    El desarrollo sigue un modelo iterativo e incremental donde cada funcionalidad pasa por las siguientes fases:
-
+```mermaid
 flowchart TD
     A[Requerimiento] --> B[Análisis]
     B --> C[Diseño]
@@ -18,6 +16,7 @@ flowchart TD
     E --> F[Integración Continua]
     F --> G[Entrega Incremental]
     G --> A
+```
 Este enfoque permite retroalimentación continua y mejora progresiva del sistema.
 
 # Workflow de Desarrollo
@@ -30,6 +29,7 @@ Este enfoque permite retroalimentación continua y mejora progresiva del sistema
 •	bugfix/* → correcciones de errores
 
 # Flujo de Trabajo
+```mermaid
 flowchart LR
     A[Crear Issue] --> B[Mover a Ready]
     B --> C[Crear rama feature desde develop]
@@ -38,8 +38,10 @@ flowchart LR
     E --> F[Validación CI - Azure Pipeline]
     F --> G[Merge a develop]
     G --> H[Entrega incremental en main]
+```
 
 # Modelo de Ramas
+```mermaid
 gitGraph
     commit
     branch develop
@@ -53,20 +55,24 @@ gitGraph
     commit
     checkout main
     merge develop
+ ```
+
 
 # Gestión del Trabajo – Kanban
-    Se utiliza GitHub Projects como tablero Kanban con las siguientes columnas:
+Se utiliza GitHub Projects como tablero Kanban con las siguientes columnas:
 •	Backlog
 •	Ready
 •	In Progress
 •	Review
 •	Done
 
-# flowchart LR
+```mermaid
+flowchart LR
     A[Backlog] --> B[Ready]
     B --> C[In Progress]
     C --> D[Review]
     D --> E[Done]
+```
 Este flujo permite visualizar el estado de cada tarea y evitar acumulación de trabajo en proceso.
 
 # Definition of Ready (DoR)
@@ -95,40 +101,46 @@ Este flujo permite visualizar el estado de cada tarea y evitar acumulación de t
 #  Arquitectura del Proyecto
   El sistema está estructurado bajo principios de Clean Architecture, con separación clara de responsabilidades.
 
-# flowchart TD
+```mermaid
+flowchart TD
     A[Frontend - Controller.web] --> B[API]
     B --> C[Application]
     C --> D[Domain]
     C --> E[Infrastructure]
+```
 
 # Estructura Inicial del Repositorio
 El repositorio sigue una estructura modular:
 control-tower-logistics09/
+```mermaid
+flowchart LR
+    A[control-tower-logistics09]
 
-├── docs/
-│   ├── Vision.md
-│   └── Proceso.md
-│
-├── src/
-│   ├── backend/
-│   │   └── ControllerTower.Api/
-│   │       ├── Application/
-│   │       ├── Domain/
-│   │       ├── Infrastructure/
-│   │       └── tests/
-│   │
-│   └── frontend/
-│       └── Controller.web/
-│
-├── infra/
-│   ├── docker/
-│   ├── docker-compose.yml
-│   ├── db/
-│   └── scripts/
-│
-├── azure-pipeline.yml
-├── ControllerTower.sln
-└── README.md
+    A --> B[docs]
+    B --> B1[Vision.md]
+    B --> B2[Proceso.md]
+
+    A --> C[src]
+    C --> C1[backend]
+    C1 --> C11[ControllerTower.Api]
+    C11 --> C111[Application]
+    C11 --> C112[Domain]
+    C11 --> C113[Infrastructure]
+    C11 --> C114[tests]
+
+    C --> C2[frontend]
+    C2 --> C21[Controller.web]
+
+    A --> D[infra]
+    D --> D1[docker]
+    D --> D2[docker-compose.yml]
+    D --> D3[db]
+    D --> D4[scripts]
+
+    A --> E[azure-pipeline.yml]
+    A --> F[ControllerTower.sln]
+    A --> G[README.md]
+```
 
 # Integración Continua
 Se implementa integración continua mediante:
